@@ -35,9 +35,17 @@ def compute_volatility(series: pd.Series, window: int = 30) -> float:
 async def analyze(payload: DataPayload):
     try:
         # The JSON from Alpha Vantage has date keys; convert to DataFrame
-        daily_series = payload.daily.get("Time Series (Daily)")
-        if daily_series is None:
-            raise ValueError("Invalid daily time series data")
+        # Handle both direct time series and nested structure
+        if "Time Series (Daily)" in payload.daily:
+            daily_series = payload.daily["Time Series (Daily)"]
+        elif "Time Series (Daily Adjusted)" in payload.daily:
+            daily_series = payload.daily["Time Series (Daily Adjusted)"]
+        else:
+            # If payload.daily is already the time series data
+            daily_series = payload.daily
+            
+        if daily_series is None or len(daily_series) == 0:
+            raise ValueError("Invalid or empty daily time series data")
 
         df = pd.DataFrame.from_dict(daily_series, orient="index").astype(float)
         close = df["4. close"].astype(float)
@@ -55,4 +63,6 @@ async def analyze(payload: DataPayload):
             "rsi": rsi,
         }
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e)) 
+        print(f"Analysis error for {payload.ticker}: {str(e)}")
+        print(f"Daily data keys: {list(payload.daily.keys()) if isinstance(payload.daily, dict) else 'Not a dict'}")
+        raise HTTPException(status_code=500, detail=f"Analysis failed: {str(e)}") 

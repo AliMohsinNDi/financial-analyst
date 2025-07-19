@@ -5,7 +5,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeScreen from './src/screens/HomeScreen';
 import DashboardScreen from './src/screens/DashboardScreen';
-import ReportScreen from './src/screens/ReportScreen';
 
 const Stack = createStackNavigator();
 
@@ -24,9 +23,8 @@ const App = () => {
           },
         }}
       >
-        <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'AI Financial Analyst' }} />
-        <Stack.Screen name="Dashboard" component={DashboardScreen} options={({ route }) => ({ title: `${route.params.ticker} Dashboard` })}/>
-        <Stack.Screen name="Report" component={ReportScreen} options={{ title: 'Financial Report' }} />
+        <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Dashboard" component={DashboardScreen} options={({ route }) => ({ title: `${route.params.ticker} Analysis` })} />
       </Stack.Navigator>
     </NavigationContainer>
   );
