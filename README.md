@@ -157,7 +157,7 @@ npx expo start
 - `GET /docs` - API documentation
 
 ### Report Service (Port 8002)
-- `POST /report` - Generate PDF reports
+- `POST /report` - Generate reports
 - `GET /docs` - API documentation
 
 ## 🔧 Configuration
@@ -238,7 +238,7 @@ Mobile App → Backend (3001) → Alpha Vantage API
      ↓
 Analysis Service (8001) → Technical Analysis
      ↓
-Report Service (8002) → PDF Generation
+Report Service (8002) → Report Generation
      ↓
 Mobile App → Display Results
 ```
