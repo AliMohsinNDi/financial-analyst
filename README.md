@@ -1,6 +1,11 @@
-﻿# AI-Powered Financial Analyst
+# AI-Powered Financial Analyst
 
 A complete end-to-end financial analysis system with live market data, quantitative analysis, recommendations, and mobile app interface.
+
+<div style="float: right; margin-left: 20px; display: flex; flex-direction: column; gap: 10px;">
+  <img src="https://github.com/user-attachments/assets/21a92f8b-58da-47a7-b020-76ee04db58bd" width="180" />
+  <img src="https://github.com/user-attachments/assets/ca8e1a2c-8cae-40d6-8d4c-e6b2e2c3ead7" width="180" />
+</div>
 
 ## 🏗️ Architecture
 
